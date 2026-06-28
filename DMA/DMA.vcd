@@ -1,0 +1,1144 @@
+$date
+	Sat Jun 27 18:10:03 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module DMA_top_tb $end
+$var wire 1 ! ready $end
+$var wire 2 " half_buffer_in [1:0] $end
+$var wire 2 # half_buffer [1:0] $end
+$var wire 2 $ full_buffer_in [1:0] $end
+$var wire 2 % full_buffer [1:0] $end
+$var wire 2 & error_reg [1:0] $end
+$var wire 1 ' error $end
+$var wire 1 ( enable $end
+$var wire 1 ) dir $end
+$var wire 8 * data_w [7:0] $end
+$var wire 8 + data_r [7:0] $end
+$var wire 8 , addr [7:0] $end
+$var wire 1 - TI_in $end
+$var wire 1 . TI $end
+$var wire 1 / RI_in $end
+$var wire 1 0 RI $end
+$var reg 1 1 RST $end
+$var reg 1 2 enable_DMA $end
+$var reg 1 3 master_clk $end
+$scope module APB_side_inst $end
+$var wire 1 ( enable $end
+$var wire 1 ) dir $end
+$var wire 8 4 data_w [7:0] $end
+$var wire 8 5 addr [7:0] $end
+$var reg 8 6 DATA [7:0] $end
+$var reg 8 7 data_r [7:0] $end
+$var reg 1 ' error $end
+$var reg 1 ! ready $end
+$upscope $end
+$scope module UART_side_inst $end
+$var wire 1 2 enable_DMA $end
+$var wire 1 - TI_in $end
+$var wire 1 / RI_in $end
+$var reg 1 0 RI $end
+$var reg 1 . TI $end
+$upscope $end
+$scope module dut $end
+$var wire 1 0 RI $end
+$var wire 1 1 RST $end
+$var wire 1 . TI $end
+$var wire 8 8 data_r_ext [7:0] $end
+$var wire 1 2 enable_DMA $end
+$var wire 1 ' error_ext $end
+$var wire 1 3 master_clk $end
+$var wire 1 ! ready_ext $end
+$var wire 2 9 half_buffer_in [1:0] $end
+$var wire 2 : half_buffer [1:0] $end
+$var wire 2 ; full_buffer_in [1:0] $end
+$var wire 2 < full_buffer [1:0] $end
+$var wire 2 = error_select [1:0] $end
+$var wire 2 > enable_transfer [1:0] $end
+$var wire 2 ? dir_transfer [1:0] $end
+$var wire 1 - TI_in $end
+$var wire 1 / RI_in $end
+$var wire 2 @ BUS_request_select [1:0] $end
+$var reg 2 A BUS_grant_select [1:0] $end
+$var reg 8 B addr_ext [7:0] $end
+$var reg 1 C bus_priority $end
+$var reg 8 D data_w_ext [7:0] $end
+$var reg 1 ) dir_ext $end
+$var reg 1 ( enable_ext $end
+$var reg 2 E error [1:0] $end
+$var reg 2 F error_reg [1:0] $end
+$var reg 2 G ready_transfer [1:0] $end
+$var reg 1 H start $end
+$var reg 2 I state [1:0] $end
+$scope module DMAchannelRX $end
+$var wire 1 J BUS_grant $end
+$var wire 1 0 RI $end
+$var wire 8 K addr_transfer_out [7:0] $end
+$var wire 8 L data_r [7:0] $end
+$var wire 1 2 enable_DMA $end
+$var wire 1 M error $end
+$var wire 1 N full_buffer_in $end
+$var wire 1 O half_buffer_in $end
+$var wire 1 3 master_clk $end
+$var wire 8 P memory_buffer_offset [7:0] $end
+$var wire 8 Q memory_start_address [7:0] $end
+$var wire 1 R ready_transfer $end
+$var wire 1 S half_buffer_internal $end
+$var wire 1 T full_buffer_internal $end
+$var wire 8 U addr_transfer_internal [7:0] $end
+$var reg 1 V BUS_request $end
+$var reg 8 W DATA [7:0] $end
+$var reg 1 / RI_in $end
+$var reg 8 X data_w [7:0] $end
+$var reg 1 Y dir_transfer $end
+$var reg 1 Z enable_addr_mng $end
+$var reg 1 [ enable_transfer $end
+$var reg 1 \ error_reg $end
+$var reg 1 ] full_buffer $end
+$var reg 1 ^ half_buffer $end
+$var reg 1 _ rst_fb $end
+$var reg 1 ` rst_hb $end
+$var reg 1 a start $end
+$var reg 3 b state [2:0] $end
+$scope module addr_mng_RX $end
+$var wire 1 Z enable $end
+$var wire 1 2 enable_DMA $end
+$var wire 8 c memory_buffer_offset [7:0] $end
+$var wire 8 d memory_start_address [7:0] $end
+$var wire 1 _ rst_fb $end
+$var wire 1 ` rst_hb $end
+$var wire 1 Y rw $end
+$var parameter 8 e peripheral_addr $end
+$var reg 8 f addr [7:0] $end
+$var reg 8 g current_addr [7:0] $end
+$var reg 1 T full_buffer $end
+$var reg 1 S half_buffer $end
+$var reg 8 h offset [7:0] $end
+$var reg 8 i origin_addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module DMAchannelTX $end
+$var wire 1 j BUS_grant $end
+$var wire 1 . TI $end
+$var wire 8 k addr_transfer_out [7:0] $end
+$var wire 8 l data_r [7:0] $end
+$var wire 1 2 enable_DMA $end
+$var wire 1 m error $end
+$var wire 1 n full_buffer_in $end
+$var wire 1 o half_buffer_in $end
+$var wire 1 3 master_clk $end
+$var wire 8 p memory_buffer_offset [7:0] $end
+$var wire 8 q memory_start_address [7:0] $end
+$var wire 1 r ready_transfer $end
+$var wire 1 s half_buffer_internal $end
+$var wire 1 t full_buffer_internal $end
+$var wire 8 u addr_transfer_internal [7:0] $end
+$var reg 1 v BUS_request $end
+$var reg 8 w DATA [7:0] $end
+$var reg 1 - TI_in $end
+$var reg 8 x data_w [7:0] $end
+$var reg 1 y dir_transfer $end
+$var reg 1 z enable_addr_mng $end
+$var reg 1 { enable_transfer $end
+$var reg 1 | error_reg $end
+$var reg 1 } full_buffer $end
+$var reg 1 ~ half_buffer $end
+$var reg 1 !" rst_fb $end
+$var reg 1 "" rst_hb $end
+$var reg 1 #" start $end
+$var reg 3 $" state [2:0] $end
+$scope module addr_mng_TX $end
+$var wire 1 z enable $end
+$var wire 1 2 enable_DMA $end
+$var wire 8 %" memory_buffer_offset [7:0] $end
+$var wire 8 &" memory_start_address [7:0] $end
+$var wire 1 !" rst_fb $end
+$var wire 1 "" rst_hb $end
+$var wire 1 y rw $end
+$var parameter 8 '" peripheral_addr $end
+$var reg 8 (" addr [7:0] $end
+$var reg 8 )" current_addr [7:0] $end
+$var reg 1 t full_buffer $end
+$var reg 1 s half_buffer $end
+$var reg 8 *" offset [7:0] $end
+$var reg 8 +" origin_addr [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module ext_sys_side_inst $end
+$var wire 2 ," error_reg [1:0] $end
+$var wire 2 -" full_buffer [1:0] $end
+$var wire 2 ." half_buffer [1:0] $end
+$var reg 2 /" full_buffer_in [1:0] $end
+$var reg 2 0" half_buffer_in [1:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b10000010 '"
+b10000001 e
+$end
+#0
+$dumpvars
+bx 0"
+bx /"
+b0 ."
+b0 -"
+bx ,"
+b10 +"
+b100 *"
+b10 )"
+bx ("
+b10 &"
+b100 %"
+b0 $"
+0#"
+x""
+x!"
+0~
+0}
+x|
+x{
+xz
+xy
+bx x
+bx w
+xv
+bx u
+xt
+xs
+xr
+b10 q
+b100 p
+xo
+xn
+xm
+bx l
+bx k
+xj
+b10010 i
+b100 h
+b10010 g
+bx f
+b10010 d
+b100 c
+b0 b
+0a
+x`
+x_
+0^
+0]
+x\
+x[
+xZ
+xY
+bx X
+bx W
+xV
+bx U
+xT
+xS
+xR
+b10010 Q
+b100 P
+xO
+xN
+xM
+bx L
+bx K
+xJ
+b0 I
+xH
+bx G
+bx F
+bx E
+bx D
+xC
+bx B
+bx A
+bx @
+bx ?
+bx >
+bx =
+b0 <
+bx ;
+b0 :
+bx 9
+bx 8
+bx 7
+bx 6
+bx 5
+bx 4
+03
+02
+11
+00
+x/
+0.
+x-
+bx ,
+bx +
+bx *
+x)
+x(
+x'
+bx &
+b0 %
+bx $
+b0 #
+bx "
+x!
+$end
+#1
+b0 @
+0v
+0V
+13
+#2
+bz +
+bz 7
+bz 8
+0!
+0'
+1r
+1R
+0j
+0J
+0H
+x(
+b0 &
+b0 F
+b0 ,"
+b11 G
+b0 A
+03
+01
+#3
+13
+#4
+b0 >
+b0 =
+0-
+1!"
+1""
+1#"
+0z
+0{
+0|
+0/
+1_
+1`
+0Z
+0[
+1a
+0\
+1H
+0t
+0s
+0T
+0S
+03
+12
+#5
+b1 $"
+b1 b
+b1 I
+13
+#6
+03
+1!
+#7
+13
+#8
+03
+#9
+13
+#10
+1/
+03
+10
+#11
+b10 b
+13
+#12
+03
+#13
+b10000001 K
+b10000001 U
+b10000001 f
+b10 @
+b1x ?
+b10 $"
+b11 b
+1V
+1Z
+1Y
+1-
+13
+1.
+#14
+03
+#15
+0M
+b0x E
+1)
+bz L
+b10000001 ,
+b10000001 5
+b10000001 B
+0(
+b11 )"
+b10 k
+b10 u
+b10 ("
+1J
+b11 @
+b11 ?
+b10 I
+b10 A
+1C
+0Z
+b11 $"
+1v
+1z
+1y
+13
+#16
+03
+#17
+0R
+b1 G
+0!
+1(
+b10 >
+0z
+1[
+13
+#18
+03
+#19
+13
+#20
+03
+#21
+1R
+b11 G
+b1010100 L
+13
+1!
+b1010100 +
+b1010100 7
+b1010100 8
+#22
+03
+#23
+0(
+b0 >
+b100 b
+b1010100 W
+0[
+13
+#24
+03
+#25
+b10010 ,
+b10010 5
+b10010 B
+0)
+b10011 g
+b10010 K
+b10010 U
+b10010 f
+b1 ?
+b101 b
+1Z
+0Y
+13
+#26
+03
+#27
+0R
+b1 G
+bz L
+bz +
+bz 7
+bz 8
+0!
+1(
+b1010100 *
+b1010100 4
+b1010100 D
+b10 >
+1[
+b1010100 X
+0Z
+13
+#28
+03
+#29
+13
+#30
+03
+#31
+1R
+b11 G
+13
+1!
+b1010100 6
+#32
+03
+#33
+0(
+00
+b0 >
+b110 b
+0[
+0/
+13
+#34
+03
+#35
+b1 @
+b1 b
+0V
+13
+#36
+03
+#37
+b1 I
+0J
+b0 A
+13
+#38
+03
+#39
+0m
+b0 E
+1)
+bx *
+bx 4
+bx D
+bz l
+b10 ,
+b10 5
+b10 B
+1j
+b10 I
+b1 A
+0C
+13
+#40
+03
+#41
+0r
+b10 G
+0!
+1(
+b1 >
+1{
+13
+#42
+03
+#43
+b10 b
+1/
+13
+10
+#44
+03
+#45
+b10000001 K
+b10000001 U
+b10000001 f
+b11 @
+b11 ?
+1r
+b11 b
+1V
+1Z
+1Y
+b11 G
+b1110111 l
+13
+1!
+b1110111 +
+b1110111 7
+b1110111 8
+#46
+03
+#47
+0(
+b0 >
+0Z
+b100 $"
+b1110111 w
+0{
+13
+#48
+03
+#49
+b10000010 ,
+b10000010 5
+b10000010 B
+0)
+b10000010 k
+b10000010 u
+b10000010 ("
+b10 ?
+b101 $"
+1z
+0y
+13
+#50
+03
+#51
+0r
+b10 G
+bz l
+bz +
+bz 7
+bz 8
+0!
+1(
+b1110111 *
+b1110111 4
+b1110111 D
+b1 >
+1{
+b1110111 x
+0z
+13
+#52
+03
+#53
+13
+#54
+03
+#55
+1m
+1r
+0H
+b0 I
+b1 &
+b1 F
+b1 ,"
+b1 E
+b11 G
+13
+1!
+1'
+#56
+03
+#57
+0m
+b0 E
+0'
+0(
+b0 >
+b1 =
+0{
+0#"
+b0 $"
+1|
+13
+#58
+03
+#59
+b10 @
+0v
+13
+#60
+03
+#61
+13
+#62
+03
+#63
+13
+#64
+03
+#65
+13
+#66
+03
+#67
+13
+#68
+03
+#69
+13
+#70
+03
+#71
+13
+#72
+03
+#73
+13
+#74
+03
+#75
+13
+#76
+03
+#77
+13
+#78
+03
+#79
+13
+#80
+03
+#81
+13
+#82
+03
+#83
+13
+#84
+03
+#85
+13
+#86
+03
+#87
+13
+#88
+03
+#89
+13
+#90
+03
+#91
+13
+#92
+03
+#93
+13
+#94
+03
+#95
+13
+#96
+03
+#97
+13
+#98
+03
+#99
+13
+#100
+03
+#101
+13
+#102
+03
+#103
+13
+#104
+03
+#105
+13
+#106
+03
+#107
+13
+#108
+03
+#109
+13
+#110
+03
+#111
+13
+#112
+03
+#113
+13
+#114
+03
+#115
+13
+#116
+03
+#117
+13
+#118
+03
+#119
+13
+#120
+03
+#121
+13
+#122
+03
+#123
+13
+#124
+03
+#125
+13
+#126
+03
+#127
+13
+#128
+03
+#129
+13
+#130
+03
+#131
+13
+#132
+03
+#133
+13
+#134
+03
+#135
+13
+#136
+03
+#137
+13
+#138
+03
+#139
+13
+#140
+03
+#141
+13
+#142
+03
+#143
+13
+#144
+03
+#145
+13
+#146
+03
+#147
+13
+#148
+03
+#149
+13
+#150
+03
+#151
+13
+#152
+03
+#153
+13
+#154
+03
+#155
+13
+#156
+03
+#157
+13
+#158
+03
+#159
+13
+#160
+03
+#161
+13
+#162
+03
+#163
+13
+#164
+03
+#165
+13
+#166
+03
+#167
+13
+#168
+03
+#169
+13
+#170
+03
+#171
+13
+#172
+03
+#173
+13
+#174
+03
+#175
+13
+#176
+03
+#177
+13
+#178
+03
+#179
+13
+#180
+03
+#181
+13
+#182
+03
+#183
+13
+#184
+03
+#185
+13
+#186
+03
+#187
+13
+#188
+03
+#189
+13
+#190
+03
+#191
+13
+#192
+03
+#193
+13
+#194
+03
+#195
+13
+#196
+03
+#197
+13
+#198
+03
+#199
+13
+#200
+03
+#201
+13
+#202
+03
+#203
+13
+#204
+03
+#205
+13
+#206
+03
+#207
+13
+#208
+03
+#209
+13
+#210
+03
+#211
+13
+#212
+03
+#213
+13
+#214
+03
+#215
+13
+#216
+03
+#217
+13
+#218
+03
+#219
+13
+#220
+03
+#221
+13
+#222
+03
+#223
+13
+#224
+03
+#225
+13
+#226
+03
+#227
+13
+#228
+03
+#229
+13
+#230
+03
+#231
+13
+#232
+03
+#233
+13
+#234
+03
+#235
+13
+#236
+03
+#237
+13
+#238
+03
+#239
+13
+#240
+03
+#241
+13
+#242
+03
+#243
+13
+#244
+03
+#245
+13
+#246
+03
+#247
+13
+#248
+03
+#249
+13
+#250
+03
+#251
+13
+#252
+03
+#253
+13
+#254
+03
+#255
+13
+#256
+03
+#257
+13
+#258
+03
+#259
+13
+#260
+03
+#261
+13
+#262
+03
+#263
+13
+#264
+03
+#265
+13
+#266
+03
+#267
+13
+#268
+03
+#269
+13
+#270
+03
+#271
+13
+#272
+03
+#273
+13
+#274
+03
+#275
+13
+#276
+03
+#277
+13
+#278
+03
+#279
+13
+#280
+03
+#281
+13
+#282
+03
+#283
+13
+#284
+03
+#285
+13
+#286
+03
+#287
+13
+#288
+03
+#289
+13
+#290
+03
+#291
+13
+#292
+03
+#293
+13
+#294
+03
+#295
+13
+#296
+03
+#297
+13
+#298
+03
+#299
+13
+#300
+03
+#301
+13
+#302
+03
+#303
+13
+#304
+03

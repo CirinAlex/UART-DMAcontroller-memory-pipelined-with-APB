@@ -44,6 +44,7 @@ reg PERIPHERAL_INDEX; // used as index for PREADY and PSLVERR
 always @(posedge ENABLE_DMA)
 begin
 	state <= 2'b00;
+	ready <= 1'b1;
 	PSEL <= 2'b00;
 	PWRITE <= 1'bz;
 	PWDATA <= 8'bz;
@@ -51,6 +52,15 @@ begin
 	error <= 0;
 	data_r <= 8'bz;
 end
+
+always @(enable)
+begin
+if(enable==1)
+ready <= 0;
+
+end
+
+
 
 /*
 always @(posedge enable)
@@ -84,8 +94,11 @@ begin
 		PERIPHERAL_INDEX = 1'b1;
 	end
 	else
+	begin
 		error <= 1;
-		ready <= 1;
+	end
+	
+	ready <= 1;
 end
 */
 
@@ -98,7 +111,7 @@ begin
 		// IDLE
 		2'b00 : begin
 			// goes to next state when transfer is initiated
-			if(enable)
+			if(enable==1)
 				begin
 				state <= 2'b01;
 				end

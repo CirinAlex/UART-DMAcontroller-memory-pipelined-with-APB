@@ -6,7 +6,7 @@ module APB_completer(
 
 		input reg PCLK, //clock signal
 
-		input reg ENABLE_DMA,	// to initialize state variable and other signals
+		input reg enable_DMA,	// to initialize state variable and other signals
 
 	// ports to memory manager
 		output reg enable,	// enable for mem manager, forwards PENABLE
@@ -36,7 +36,7 @@ reg[1:0] state; // state variable for FSM
 
 
 // initializing state variable and other buses and signals.
-always @(posedge ENABLE_DMA)
+always @(posedge enable_DMA)
 begin
 	
 	state <= 2'b00;

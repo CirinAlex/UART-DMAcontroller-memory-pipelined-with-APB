@@ -44,7 +44,7 @@ uart_timer U0(.uart_clk(uart_clk), .timerInitVal(timerInitVal), .timerCurrentVal
 
 
 //TX top module instantiation
-TXtop T0(.timerInitVal(timerInitVal), .timerCurrentVal(timerCurrentValwire), .TXbuff(TXbuff), .TE(TE), .TI_in(TI_in), .TI(TI), .TX(TX), .clk(master_clk), .pwrite(pwrite));
+TXtop T0(.timerInitVal(timerInitVal), .timerCurrentVal(timerCurrentValwire), .TXbuff(TXbuff), .TE(TE), .TI_in(TI_in), .TI(TI), .TX(TX), .clk(master_clk));//, .pwrite(pwrite));
 
 
 //RX top module instantiation

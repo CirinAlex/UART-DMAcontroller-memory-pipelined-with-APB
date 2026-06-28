@@ -24,9 +24,9 @@ TXshift A1(.timerInitVal(timerInitVal), .timerCurrentVal(timerCurrentVal), .TXbu
 
 
 //TXCH made HIGH after when there is a write operation on TXbuff
-always @(negedge pwrite)
+always @(TXbuff) //negedge pwrite)
 begin
-if(pwrite==0)
+//if(pwrite==0)
 TXCH <= 1;
 end
 
@@ -35,7 +35,7 @@ always @(posedge TE)
 begin
 state <= 2'b00;
 TXshiftenable <= 0;
-TI <= 0;
+TI <= 1;
 end
 
 

@@ -9,7 +9,7 @@ this module keeps the address of peripheral and memory buffer assigned for that 
 
 */
 
-module addr_mng(
+module addr_mng_TX(
 	
 	// control and output signals for DMA channel
 	input reg enable, 	// enable signal for this circuit

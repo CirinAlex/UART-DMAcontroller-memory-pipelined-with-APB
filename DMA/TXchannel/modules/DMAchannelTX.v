@@ -5,7 +5,7 @@
 
 // DMA channel that handles RX of UART
 
-module DMAchannelRX(
+module DMAchannelTX(
 
 	input wire master_clk,
 	
@@ -38,6 +38,7 @@ module DMAchannelRX(
 
 reg[7:0] DATA; // stores read data from RXbuff to write to the memory
 reg[2:0] state; // state variable
+reg start;
 
 wire half_buffer_internal;
 wire full_buffer_internal;
@@ -62,7 +63,7 @@ reg rst_fb;
 
 
 
-addr_mng uut(.enable(enable_addr_mng), .rw(dir_transfer), .addr(addr_transfer_internal), .half_buffer(half_buffer_internal), .full_buffer(full_buffer_internal), .enable_DMA(enable_DMA), .memory_start_address(memory_start_address), .memory_buffer_offset(memory_buffer_offset), .rst_hb(rst_hb), .rst_fb(rst_fb));
+addr_mng_TX addr_mng_TX(.enable(enable_addr_mng), .rw(dir_transfer), .addr(addr_transfer_internal), .half_buffer(half_buffer_internal), .full_buffer(full_buffer_internal), .enable_DMA(enable_DMA), .memory_start_address(memory_start_address), .memory_buffer_offset(memory_buffer_offset), .rst_hb(rst_hb), .rst_fb(rst_fb));
 
 
 
@@ -82,7 +83,7 @@ case(state)
 	// IDLE
 	3'b000 : begin
 		BUS_request <= 0;
-		if(enable_DMA==1 && error_reg!= 1)
+		if(start==1 && error_reg!= 1)
 		begin
 			state <= 3'b001;
 		end
@@ -130,6 +131,7 @@ case(state)
 		begin
 			error_reg <= 1;
 			state <= 3'b000;
+			start <= 0;
 			enable_transfer <= 0;
 		end
 
@@ -178,6 +180,7 @@ case(state)
 		begin
 			error_reg <= 1;
 			state <= 3'b000;
+			start <= 0;
 			enable_transfer <= 0;
 		end
 	
@@ -275,10 +278,19 @@ enable_transfer <= 0;
 BUS_request <= 0;
 enable_addr_mng <= 0;
 
+start <= 1;
+
 rst_hb <= 1;
 rst_fb <= 1;
 
-TI_in <= 1;
+TI_in <= 0;
+
+end
+
+else if(enable_DMA==0)
+begin
+
+start <= 0;
 
 end
 
