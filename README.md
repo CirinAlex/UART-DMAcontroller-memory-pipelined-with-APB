@@ -284,6 +284,8 @@ To be updated
 <img width="1368" height="750" alt="Screenshot 2026-06-23 220416" src="https://github.com/user-attachments/assets/ce30de7b-d445-4646-b59f-195540e5d06b" />
 
 ### top module
+<img width="1360" height="733" alt="final" src="https://github.com/user-attachments/assets/3d56b0cf-2146-4852-a8a8-b6e82152177e" />
+
 <img width="1031" height="630" alt="Screenshot 2026-07-05 185834" src="https://github.com/user-attachments/assets/a482c00f-6e41-4c99-8c2b-ce91b60f025b" />
 
 ## LinkedIn Series
