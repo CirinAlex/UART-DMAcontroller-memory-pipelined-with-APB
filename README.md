@@ -1,11 +1,12 @@
 
 
+
 # SoC subsystem : UART, DMA controller and Memory, interconnected via APB
 An RTL design project using verilog. It aims to model an SoC subsystem mainly including UART, DMA controller and memory interfaced with APB.\
 \
 NB : *The documentation and directories are not complete. They are updated as the project developes.*
 
-# Project progress : 80%
+# Project progress : 100%
 
 ## Table of Contents
 
@@ -132,14 +133,19 @@ This is a dual channel circular mode DMA controller hardwired for RX and TX of U
 #### DMA channel
 The DMA channel handles the data transfer between peripheral(UART) and memory on each interrupt (RI/TI). Each channel has an 8 state FSM. The external system first need to configure the memory_buff_strt_addr and memory_buff_offset, then enable the DMA. The DMA channel will give an interrupt when memory buffer is half, and another interrupt when memory buffer is full. When the memory buffer is full, the FSM enters a waiting to configure state. The external system can either disable the DMA and then reconfigure the registers or just disable and enable the DMA to resume the transfers.
 ### Memory
-To be updated
-
+Memory module is created only for the purpose of simulation.
 
 ## Directory Structure
 ```
 UART-DMAcontroller-Memory-pipelined-with-APB/
 │   .gitignore
 │   README.md
+│   top.vcd
+│   topmodule.v
+│   topmodule_tb.v
+│   val.hex
+│   valin.hex
+│   valout.hex
 │
 ├───APB/
 │   │   README.md
@@ -157,22 +163,43 @@ UART-DMAcontroller-Memory-pipelined-with-APB/
 │           APB_requester.vcd
 │
 ├───DMA/
+│   │   DMA.vcd
+│   │   DMA_top.v
+│   │   DMA_top_tb.v
 │   │   README.md
+│   │   UART_reg_map.v
 │   │
-│   └───RXchannel/
-│       │   README.md
+│   ├───RXchannel/
+│   │   │   DMARX.vcd
+│   │   │   README.md
+│   │   │
+│   │   ├───modules/
+│   │   │       addr_mng_RX.v
+│   │   │       DMAchannelRX.v
+│   │   │
+│   │   ├───testbenches/
+│   │   │       addr_mng_tb.v
+│   │   │       DMAchannelRX_tb.v
+│   │   │
+│   │   └───VCD/
+│   │           addr_mng.vcd
+│   │           DMARX.vcd
+│   │
+│   └───TXchannel/
 │       │
 │       ├───modules/
-│       │       addr_mng_RX.v
-│       │       DMAchannelRX.v
+│       │       addr_mng_TX.v
+│       │       DMAchannelTX.v
 │       │
 │       ├───testbenches/
 │       │       addr_mng_tb.v
-│       │       DMAchannelRX_tb.v
+│       │       DMAchannelTX_tb.v
 │       │
 │       └───VCD/
-│               addr_mng.vcd
-│               DMARX.vcd
+│               DMATX.vcd
+│
+├───MEMORY/
+│       memory.v
 │
 └───UART/
     │   README.md
@@ -256,7 +283,7 @@ To be updated
 #### DMA TX channel
 <img width="1368" height="750" alt="Screenshot 2026-06-23 220416" src="https://github.com/user-attachments/assets/ce30de7b-d445-4646-b59f-195540e5d06b" />
 
-
-
+### top module
+<img width="1031" height="630" alt="Screenshot 2026-07-05 185834" src="https://github.com/user-attachments/assets/a482c00f-6e41-4c99-8c2b-ce91b60f025b" />
 
 ## LinkedIn Series
