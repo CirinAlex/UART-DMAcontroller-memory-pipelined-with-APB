@@ -5,6 +5,9 @@
 module topmodule_tb;
 
 
+
+
+
 reg master_clk;
 wire XX;
 reg[7:0] memory_start_address[1:0];
@@ -41,6 +44,9 @@ always #10 master_clk = ~master_clk;
 
 initial begin
 
+
+
+
 $dumpfile("top.vcd");
 $dumpvars();
 
@@ -57,16 +63,16 @@ enable_DMA = 0;
 TE = 0;
 RE = 0;
 
-memory_start_address[0] = 8'h10;
+memory_start_address[0] = 8'd10;
 memory_buffer_offset[0] = 8'd6;
 
-memory_start_address[1] = 8'h30;
+memory_start_address[1] = 8'd30;
 memory_buffer_offset[1] = 8'd6;;
 
 timerInitVal = 8'd253;
 
 
-$readmemh("val.hex", dut.memory.mem, 10, 17);
+$readmemh("val.hex", dut.memory.mem, 8'd10, 8'd17);
 
 #2;
 
@@ -77,7 +83,9 @@ TE = 1;
 RE = 1;
 #2;
 
-#200000;
+#300000;
+$writememh("valout.hex", dut.memory.mem, 8'd30, 8'd37);
+$writememh("valin.hex", dut.memory.mem, 8'd10, 8'd20);
 
 $finish;
 

@@ -32,7 +32,7 @@ module APB_requester(
 
 // MEMORY_X_ADDR => memory address range
 // UART_X_ADDR => UART TX and RX reg addresses
-parameter MEMORY_STRT_ADDR = 8'h00, MEMORY_END_ADDR = 8'h7f, UART_TX_ADDR = 8'h80, UART_RX_ADDR = 8'h81, WIDTH = 7;
+parameter MEMORY_STRT_ADDR = 8'h00, MEMORY_END_ADDR = 8'h7f, UART_TX_ADDR = 8'h82, UART_RX_ADDR = 8'h81, WIDTH = 7;
 
 
 
@@ -53,68 +53,35 @@ begin
 	data_r <= 8'bz;
 end
 
-always @(enable)
+always @(posedge enable)
 begin
 if(enable==1)
-ready <= 0;
-
-end
-
-
-
-/*
-always @(posedge enable)
-begin
-	error <= 0;
+	begin
 	ready <= 0;
-	PWRITE <= dir; 	// setting PWRITE
-	
-	// setting data bus according to dir input by master peripheral.
-	case(dir)
-		1 : PWDATA <= data_w;
-	endcase
-	PADDR <= addr;
-	PENABLE <= 0;
-
+	PWDATA <= data_w;
+	PWRITE <= dir;
+	state <= 2'b01;
+	//PADDR <= addr;
+	end
 end
-*/
-/*
 
-always @(posedge enable)
-begin
-	if(addr[WIDTH:0] >= MEMORY_STRT_ADDR && addr[WIDTH:0] <= MEMORY_END_ADDR)
-	begin
-		PSEL[0] = 1;
-		PERIPHERAL_INDEX = 1'b0;
-	end
-
-	else if(addr == UART_RX_ADDR || addr == UART_TX_ADDR)
-	begin
-		PSEL[1] = 1;
-		PERIPHERAL_INDEX = 1'b1;
-	end
-	else
-	begin
-		error <= 1;
-	end
-	
-	ready <= 1;
-end
-*/
 
 
 // FSM
-always @(posedge PCLK, posedge PENABLE)
+always @(posedge PCLK)//, posedge PENABLE)
 begin
 	
 	case(state)
 		// IDLE
 		2'b00 : begin
+
+			PENABLE <= 0;
+
 			// goes to next state when transfer is initiated
-			if(enable==1)
+			/*if(enable==1)
 				begin
 				state <= 2'b01;
-				end
+				end*/
 			end
 
 		// SETUP declare PSEL
@@ -130,14 +97,14 @@ begin
 				PSEL[1] = 1;
 				PERIPHERAL_INDEX = 1'b1;
 				end
-			/*else
+			else
 				begin
 				error <= 1;
 				ready <= 1;
 				end
-			*/
+			
 			error <= 0;
-			ready <= 0;
+
 			PWRITE <= dir; 	// setting PWRITE
 		
 			// setting data bus according to dir input by master peripheral.
@@ -145,7 +112,7 @@ begin
 				1 : PWDATA <= data_w;
 			endcase
 			PADDR <= addr;
-			PENABLE <= 0;
+
 			state <= 2'b10;
 
 			end
@@ -162,12 +129,12 @@ begin
 				2'b10 : begin
 				
 					case(PWRITE)
-						1 : begin
+						0 : begin
 							// keeping data bus in high impedance after transfer
 							PWDATA <= 8'bz;
 						end
 
-						0 : begin
+						1 : begin
 							// reading data to data_r (giving to master peripheral)
 							data_r <= PRDATA;
 						end
@@ -179,7 +146,7 @@ begin
 					ready <= 1;
 					state <= 2'b00;
 					PSEL <= 2'b00;
-					PENABLE <= 0;
+					//PENABLE <= 0;
 					PADDR <= 8'bz;
 					PWDATA <= 8'bz;
 					end
@@ -188,7 +155,7 @@ begin
 				2'b11 : begin 
 						state <= 2'b00;
 						PSEL <= 2'b00;
-						PENABLE <= 0;
+						//PENABLE <= 0;
 						ready <= 1;
 						error <= 1; // propogated to the CPU
 						PADDR <= 8'bz;

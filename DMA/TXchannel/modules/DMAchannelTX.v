@@ -176,20 +176,20 @@ case(state)
 		if(BUS_grant==1 && ready_transfer==1 && enable_transfer==1)
 		begin
 
-		if(error==1)
-		begin
-			error_reg <= 1;
-			state <= 3'b000;
-			start <= 0;
-			enable_transfer <= 0;
-		end
+			if(error==1)
+			begin
+				error_reg <= 1;
+				state <= 3'b000;
+				start <= 0;
+				enable_transfer <= 0;
+			end
 	
-		else
-		begin
-			TI_in <= 0; // CLR RI, RX interrupt
-			enable_transfer <= 0;
-			state <= 3'b110;
-		end
+			else
+			begin
+				TI_in <= 0; // CLR RI, RX interrupt
+				enable_transfer <= 0;
+				state <= 3'b110;
+			end
 		end
 
 		end

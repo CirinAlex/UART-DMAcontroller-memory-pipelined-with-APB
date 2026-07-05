@@ -12,6 +12,9 @@ module topmodule(
 	input wire RX,
 	output wire TX,
 
+	output wire[7:0] TXb[8:0],
+	output wire[7:0] RXb[8:0],
+
 	input wire[7:0] memory_start_address[1:0],
 	input wire[7:0] memory_buffer_offset[1:0],
 	input wire enable_DMA,
@@ -131,7 +134,7 @@ wire dir_mem;
 wire[7:0] data_r_mem;
 wire[7:0] data_w_mem;
 wire error_mem;
-
+wire select_per_mem;
 
 //=============================================================================
 
@@ -147,6 +150,7 @@ APB_completer APB_completer_memory_side(
     .data_r(data_r_mem),
     .dir(dir_mem),
     .error(error_mem),
+    .select_per(select_per_mem),
 
     // APB buses and signals
     .PWDATA(PWDATA),
@@ -175,6 +179,7 @@ wire dir_uart;
 wire[7:0] data_r_uart;
 wire[7:0] data_w_uart;
 wire error_uart;
+wire select_per_uart;
 
 //=======================================================================================
 
@@ -191,6 +196,7 @@ APB_completer APB_completer_uart_side (
     .data_r(data_r_uart),
     .dir(dir_uart),
     .error(error_uart),
+    .select_per(select_per_uart),
 
     // APB buses and signals
     .PWDATA(PWDATA),
@@ -214,6 +220,9 @@ wire[7:0] RXbuff;
 
 
 UART_reg_map UART_reg_map(
+
+    .enable_DMA(enable_DMA),
+
     .enable(enable_uart),
     .ready(ready_uart),
     .addr(addr_uart),
@@ -221,6 +230,7 @@ UART_reg_map UART_reg_map(
     .data_r(data_r_uart),
     .dir(dir_uart),
     .error(error_uart),
+    .select_per(select_per_uart),
 
     // UART buffers
     .TXbuff(TXbuff),
@@ -256,7 +266,7 @@ uart uart(
 
 
 memory memory(.enable(enable_mem), .ready(ready_mem), .addr(addr_mem), .data_w(data_w_mem), .data_r(data_r_mem),
-.dir(dir_mem), .error(error_mem), .enable_DMA(enable_DMA));
+.dir(dir_mem), .error(error_mem), .enable_DMA(enable_DMA), .select_per(select_per_mem), .TXb_1(TXb), .RXb_1(RXb));
 
 
 

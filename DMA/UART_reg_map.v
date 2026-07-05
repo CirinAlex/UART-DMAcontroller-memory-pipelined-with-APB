@@ -15,6 +15,7 @@ module UART_reg_map(
 		output reg[7:0] data_r,
 		input wire dir,
 		output reg error,
+		input wire select_per,
 
 	// UART buffers
 		output reg[7:0] TXbuff,
@@ -22,13 +23,16 @@ module UART_reg_map(
 	
 );
 
-reg ready_internal;
+
 
 
 always @(posedge enable)
 begin
 
-ready <= 0;
+if(select_per==1)
+begin
+
+ready <= 1;
 
 case(addr)
 	// RXbuff
@@ -50,34 +54,25 @@ case(addr)
 		end
 
 endcase
+end
 
-ready_internal <= 1;
 
 end
 
 
-always @(posedge ready_internal)
+always @(negedge enable)
 begin
 
-ready <= 1;
-ready_internal <= 0;
+ready <= 0;
 
 end
 
 
-always @(enable_DMA)
-begin
-
-if(enable_DMA==1)
+always @(posedge enable_DMA)
 begin
 
 error <= 0;
-
-ready <= 1;
-ready_internal <= 1;
-
-end
-
+ready <= 0;
 
 end
 
